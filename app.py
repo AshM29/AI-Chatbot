@@ -4,14 +4,15 @@ load_dotenv()
 import os
 import google.generativeai as genai
 import streamlit as st
-model=genai.configure(api_key="GOOGLE_API_KEY")
-chat=genai.start_chat(history=[])
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+model=genai.GenerativeModel("gemini-pro")
+chat=model.start_chat(history=[])
 
 def get_gemini_response(question):
   response=chat.send_message(question,stream=True)
   return response
   
-st._config("Q&A Chatbot")
+st.set_page_config("Q&A Chatbot")
 st.header("Conversational ChatBot")
 
 if 'chat_history' not in st.session_state:
