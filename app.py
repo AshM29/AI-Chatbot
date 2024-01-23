@@ -1,4 +1,4 @@
-from dotenv import load_dataenv
+from dotenv import load_dotenv
 load_dotenv()
 
 import os
